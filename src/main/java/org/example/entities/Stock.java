@@ -5,9 +5,7 @@ public class Stock {
     private String name;
     private int price;
     private int quantity;
-    public Stock(){
-
-    }
+    public Stock(){}
 
     public Stock(String name, int price, int quantity) {
         this.name = name;
@@ -40,6 +38,10 @@ public class Stock {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package org.example.servises;
 
+import org.example.dao.StockDAO;
 import org.example.entities.Stock;
+import org.example.init.Initializer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +13,10 @@ import java.util.Scanner;
 public class ConsoleManager {
     private static Scanner scanner = new Scanner(System.in);
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private StockDAO stockDAO;
 
-    public ConsoleManager() {
+    public ConsoleManager(StockDAO stockDAO) {
+        this.stockDAO = stockDAO;
     }
 
     public void printAllStocksToConsole(ArrayList<Stock> stocks){
@@ -32,7 +36,8 @@ public class ConsoleManager {
         return line;
     }
     public void clearTheConsole() {
-        //TODO
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     public void printMainMenu(){
         System.out.println("1-login to account");
@@ -49,8 +54,27 @@ public class ConsoleManager {
         System.out.println("2-buy stock");
         System.out.println("3-sell stock");
         System.out.println("4-create stock");
-        System.out.println("5-delete account");
-        System.out.println("6-back");
+        System.out.println("5-back");
+    }
+    public int readQuantytiesOfStocks(int stock_id){
+        int fromCopy = 1;
+        int to = stockDAO.quantitiesOfStocks(stock_id);
+        int number;
+        while(true){
+            try{
+                int from = fromCopy;
+                number = scanner.nextInt();
+                for(;from<=to;from++){
+                    if(number==from){
+                        return number;
+                    }
+                }
+                System.out.println("Please input number beetween "+ fromCopy + " and"+ to);
+            }catch (Exception e){
+                System.out.print("Please input positiv valid number: ");
+                continue;
+            }
+        }
     }
     public int readNumberFromConsole(int from, int to){
         int fromCopy = from;
