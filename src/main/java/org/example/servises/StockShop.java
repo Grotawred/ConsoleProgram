@@ -8,7 +8,7 @@ public class StockShop {
     private ArrayList<Stock> actions = new ArrayList<>();
     private StockDAO dao;
     public StockShop(){
-        dao = new StockDAO();
+//        dao = new StockDAO();
     }
     public ArrayList<Stock> getAllStocks(){
         return dao.getAllStocksFromDB();

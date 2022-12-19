@@ -14,10 +14,10 @@ public class SellStock {
     private PurchaseDAO purchaseDAO;
     private UserDAO userDAO;
     public SellStock(){
-        consoleManager = new ConsoleManager();
-        stockDAO = new StockDAO();
-        purchaseDAO = new PurchaseDAO();
-        userDAO = new UserDAO();
+//        consoleManager = new ConsoleManager();
+//        stockDAO = new StockDAO();
+//        purchaseDAO = new PurchaseDAO();
+//        userDAO = new UserDAO();
     }
     public void sellStock(User user){
         ArrayList<Stock> stocks = stockDAO.getAllStocksFromDB();

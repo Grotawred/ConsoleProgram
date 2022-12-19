@@ -7,8 +7,8 @@ public class CreateStock {
     private ConsoleManager  consoleManager;
     private StockDAO stockDAO;
     public CreateStock(){
-        consoleManager = new ConsoleManager();
-        stockDAO = new StockDAO();
+//        consoleManager = new ConsoleManager();
+//        stockDAO = new StockDAO();
     }
     public void createStock(){
         String name;
@@ -19,7 +19,7 @@ public class CreateStock {
             name = consoleManager.readStringFromConsole("Create name: ");
             price = consoleManager.readStringFromConsole("Create price: ");
             quantity = consoleManager.readStringFromConsole("How much of your stock: ");
-            Stock stock = new Stock(name, price, quantity);
+//            Stock stock = new Stock(name, price, quantity);
             stockDAO.createStock(name, price, quantity);
             break;
         }

@@ -9,7 +9,7 @@ public class LoggedInAccount {
     private CreateStock createStock;
     private SellStock sellStock;
     public LoggedInAccount(){
-        consoleManager = new ConsoleManager();
+//        consoleManager = new ConsoleManager();
         buyStock = new BuyStocks();
         createStock = new CreateStock();
         sellStock = new SellStock();

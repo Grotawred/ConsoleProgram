@@ -8,7 +8,7 @@ public class StartMenu {
 
     public StartMenu(StockShop stockShop){
         this.stockShop = stockShop;
-        consoleManager = new ConsoleManager();
+//        consoleManager = new ConsoleManager();
         registrAccount = new RegistrationAccount();
         loggedCustomer = new LoggedToAccount(stockShop);
     }

@@ -11,8 +11,8 @@ public class LoggedToAccount {
     public LoggedToAccount(StockShop stockShop){
         this.stockShop = stockShop;
         loggedInAccount = new LoggedInAccount();
-        userDAO = new UserDAO();
-        consoleManager = new ConsoleManager();
+//        userDAO = new UserDAO();
+//        consoleManager = new ConsoleManager();
     }
     public void loggedCustomer() {
         String login;
