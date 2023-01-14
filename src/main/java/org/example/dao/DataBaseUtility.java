@@ -6,7 +6,6 @@ import java.sql.*;
 
 public class DataBaseUtility {
     private Initializer initializer;
-    public DataBaseUtility(){}
     public DataBaseUtility(Initializer initializer){
         this.initializer = initializer;
     }

@@ -56,7 +56,7 @@ public class ConsoleManager {
         System.out.println("4-create stock");
         System.out.println("5-back");
     }
-    public int readQuantytiesOfStocks(int stock_id){
+    public int readQuantitiesOfStocks(int stock_id){
         int fromCopy = 1;
         int to = stockDAO.quantitiesOfStocks(stock_id);
         int number;

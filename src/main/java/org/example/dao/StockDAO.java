@@ -10,7 +10,8 @@ public class StockDAO {
     private static String SQL_GET_ALL_STOCKS = "SELECT * FROM db_to_console_program.stocks;";
     private static String SQL_GET_QUANTITIES_OF_ALL_STOCKS = "SELECT quantity FROM db_to_console_program.stocks WHERE id = ?;";
     private static String SQL_GET_PRICE_OF_STOCK_BY_ID = "SELECT price FROM db_to_console_program.stocks WHERE id = ?;";
-    private static String SQL_CRETE_NEW_STOCK = "INSERT INTO `db_to_console_program`.`stocks` (`name`, `price`, `quantity`) VALUES ('?', '?', '?');";
+    private static String SQL_CRETE_NEW_STOCK = "INSERT INTO `db_to_console_program`.`stocks` (`name`, `price`, `quantity`) VALUES (?, ?, ?);";
+    private static String SQL_GET_STOCK_BY_ID = "SELECT * FROM db_to_console_program.stocks WHERE id = ?;";
     private DataBaseUtility dataBase;
     public StockDAO(DataBaseUtility dataBase){
         this.dataBase = dataBase;
@@ -26,7 +27,17 @@ public class StockDAO {
         }
         return 0;
     }
-
+    public Stock getStockById(int id){
+        ResultSet resultSet = dataBase.getResultSet(SQL_GET_STOCK_BY_ID, id);
+        try{
+            while(resultSet.next()){
+             return new Stock(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("price"), resultSet.getInt("quantity"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     public ArrayList<Stock> getAllStocksFromDB() {
         ResultSet result = dataBase.getResultSet(SQL_GET_ALL_STOCKS);
         ArrayList<Stock> stocks = new ArrayList<>();
@@ -54,7 +65,7 @@ public class StockDAO {
         }
         return 0;
     }
-    public boolean createStock(String name, String price, String quantity){
-        return dataBase.modifyDB(SQL_CRETE_NEW_STOCK, name, price, quantity);
+    public void createStock(String name, String price, String quantity){
+        dataBase.modifyDB(SQL_CRETE_NEW_STOCK, name, price, quantity);
     }
 }

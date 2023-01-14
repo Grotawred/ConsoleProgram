@@ -1,11 +1,15 @@
 package org.example.init;
 
 import lombok.NoArgsConstructor;
+import org.example.Application;
 import org.example.dao.DataBaseUtility;
 import org.example.dao.PurchaseDAO;
 import org.example.dao.StockDAO;
 import org.example.dao.UserDAO;
 import org.example.servises.ConsoleManager;
+import org.example.servises.CustomerService;
+import org.example.servises.StockService;
+import org.example.servises.StockShop;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,10 +23,39 @@ public class Initializer {
     private UserDAO userDAO;
     private PurchaseDAO purchaseDAO;
     private ConsoleManager consoleManager;
+    private StockService stockService;
+    private StockShop stockShop;
+    private Application application;
+    private CustomerService customerService;
+    public StockService getStockService(){
+        if(stockService == null){
+            stockService = new StockService(getStockDAO(),getConsoleManager(),getPurchaseDAO(),getUserDAO());
+        }
+        return stockService;
+    }
+    public CustomerService getCustomerService(){
+        if(customerService == null){
+            customerService = new CustomerService(getConsoleManager(),getUserDAO(),getStockShop());
+        }
+        return customerService;
+    }
+    public Application getApplication(){
+        if(application == null){
+            application = new Application(getConsoleManager(),getStockShop(),getStockService(),getCustomerService());
+        }
+        return application;
+    }
+
+    public StockShop getStockShop(){
+        if(stockShop == null){
+            stockShop = new StockShop(getStockDAO());
+        }
+        return stockShop;
+    }
 
     public DataBaseUtility getDataBaseUtility() {
         if (dataBase == null) {
-            dataBase = new DataBaseUtility();
+            dataBase = new DataBaseUtility(this);
         }
         return dataBase;
     }

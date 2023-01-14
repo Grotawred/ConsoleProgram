@@ -6,15 +6,15 @@ import org.example.init.Initializer;
 import java.sql.ResultSet;
 
 public class UserDAO {
-    private static String SQL_LOGIN = "SELECT * FROM db_to_console_program.users WHERE Login = ? AND Password = ?;";
-    private static String SQL_CREATE_ACCOUNT = "INSERT INTO `db_to_console_program`.`users` (`Login`, `Password`) VALUES (?, ?);";
-    private static String SQL_TO_SWITCH_MONEY = "UPDATE db_to_console_program.users SET money = ? WHERE (id =  ?);";
-    private DataBaseUtility dataBaseUtility;
+    private static final String SQL_LOGIN = "SELECT * FROM db_to_console_program.users WHERE Login = ? AND Password = ?;";
+    private static final String SQL_CREATE_ACCOUNT = "INSERT INTO `db_to_console_program`.`users` (`Login`, `Password`, `Money`) VALUES (?, ?, ?);";
+    private static final String SQL_TO_SWITCH_MONEY = "UPDATE db_to_console_program.users SET money = ? WHERE (id =  ?);";
+    private final DataBaseUtility dataBaseUtility;
     public UserDAO(DataBaseUtility dataBaseUtility){
         this.dataBaseUtility = dataBaseUtility;
     }
-    public boolean createUser(String login, String password){//TODO input user not login and password
-        return dataBaseUtility.modifyDB(SQL_CREATE_ACCOUNT, login, password);
+    public boolean createUser(String login, String password, String money){
+        return dataBaseUtility.modifyDB(SQL_CREATE_ACCOUNT, login, password, money);
     }
     public User getUserByLoginAndPassword(String login, String password) {
         ResultSet result = dataBaseUtility.getResultSet(SQL_LOGIN, login, password);

@@ -5,17 +5,13 @@ import org.example.entities.Stock;
 import java.util.ArrayList;
 
 public class StockShop {
-    private ArrayList<Stock> actions = new ArrayList<>();
+    private final ArrayList<Stock> actions = new ArrayList<>();
     private StockDAO dao;
-    public StockShop(){
-//        dao = new StockDAO();
+    public StockShop(StockDAO stockDAO){
+        dao = stockDAO;
     }
-    public ArrayList<Stock> getAllStocks(){
+    public ArrayList<Stock> getAllStocks() {
         return dao.getAllStocksFromDB();
-    }
-
-    public ArrayList<Stock> getActions() {
-        return actions;
     }
 
     public void printAction() {
