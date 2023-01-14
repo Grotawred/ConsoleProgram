@@ -17,11 +17,11 @@ public class Test1 {
         DataBaseUtility dataBaseUtility = new DataBaseUtility(initializer);
         int id = 1;
         ResultSet resultSet = dataBaseUtility.getResultSet(TEST_SQL, id);
-        try{
-            System.out.println(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getInt("price"), resultSet.getInt("quantity"));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try{
+//            System.out.println(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getInt("price"), resultSet.getInt("quantity"));
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
     @Test
     void testSingleSuccessTest1() {
